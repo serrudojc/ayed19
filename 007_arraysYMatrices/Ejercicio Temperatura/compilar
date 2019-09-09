@@ -1,0 +1,3 @@
+g++ -Wall -c -o matrices.o matrices.cpp
+g++ -Wall -c -o main.o main.cpp
+g++ -Wall -o temp matrices.o main.o

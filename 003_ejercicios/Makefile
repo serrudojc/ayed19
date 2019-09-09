@@ -1,0 +1,28 @@
+CC=g++				    # compilador c
+CFLAGS=-c -Wall	-g		# flags pasados al complilador
+LDFLAGS=			    # flags pasados al linker
+OBJS=clase3_ejer4.o		# lista de todos los archivos objeto
+SOURCES=$(OBJS:.o=.c)	# lista de todos los archivos fuente
+HEADERS=*.hpp			    # lista de todos los archivos header
+EXE=clase3_ejer4		    # nombre del ejecutable
+MAKEFILE=Makefile
+
+# regla para generar el ejecutable
+$(EXE): $(OBJS)
+	@echo "### Generando ejecutable"
+	$(CC) $(OBJS) -o $@
+
+# regla para generar los archivos objeto
+%.o: %.c $(MAKEFILE) $(HEADERS)
+	@echo "### Compilando" $<
+	$(CC) $(CFLAGS) -o $@ $<
+
+# regla para borrar el resultado de la compilacion anterior
+clean:
+	@echo "### Borrando todo..."
+	rm -f ./*.o
+	rm -f $(EXE)
+
+# regla para hacer todo desde el comienzo (borrar todo, compilar y linkear)
+all: clean $(EXE)
+
