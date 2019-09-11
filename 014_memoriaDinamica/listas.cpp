@@ -28,6 +28,7 @@ Nodo* buscaEInsertaOrdenado(Nodo*& p, int v, bool& enc);
 
 int main (){
 	int opcion, valor;
+	bool enc;
 	do{
 		cout<<"\t1-Agregar nodo."<<endl;
 		cout<<"\t2-Mostrar."<<endl;
@@ -35,7 +36,7 @@ int main (){
 		cout<<"\t4-Buscar."<<endl;
 		cout<<"\t5-Eliminar."<<endl;
 		cout<<"\t6-Eliminar Primer Nodo."<<endl;
-		cout<<"\t7-Insertar ordenado."<<endl;
+		cout<<"\t7-Insertar ordenado.(LISTA DEBE ESTAR ORDENADA o VACIA)"<<endl;
 		cout<<"\t8-Ordenar."<<endl;
 		cout<<"\t9-Buscar e Insertar Ordenado."<<endl;
 		cout<<"\t0-Salir."<<endl;
@@ -59,15 +60,39 @@ int main (){
 				cout<<"Memoria liberada."<<endl<<endl;
 				break;
 			case 4:
+				//ERROR, al buscar elemento que no existe en la lista
 				cout<<"Ingrese valor buscar: ";
-				cin>>valor;
+				cin>>valor; cout<<endl;
 				temporario = buscar(lista,valor);
 				if (temporario == NULL)	//sacar el temporario->sig
 					cout<<"Valor no encontrado."<<endl<<endl;
 				else
 					cout<<"Posicion de memoria del valor: "<<temporario<<endl<<endl;
 				break;
-				
+			case 5:
+				//ERROR, al eliminar elemento que no existe en la lista
+				cout<<"Ingrese valor a eliminar: ";
+				cin>>valor;
+				eliminar(lista,valor);				
+				break;
+			case 6:
+				valor = eliminarPrimerNodo(lista);
+				cout<<"Primer nodo eliminado y su valor era: "<<valor<<endl;
+				break;
+			case 7:
+				cout<<"Ingrese valor a insertarOrdenado: ";
+				cin>>valor;
+				insertarOrdenado(lista,valor);
+				break;
+			case 8: 
+				ordenar(lista);
+				break;
+			case 9: 
+				//ERROR al usar la funcion buscar elemento que no existe
+				cout<<"Ingrese valor insertar: ";
+				cin>>valor;
+				temporario = buscaEInsertaOrdenado(lista,valor,enc);
+				break;				
 			default:
 				cout<<"opcion incorrecta."<<endl<<endl;	
 		}
@@ -130,12 +155,29 @@ void liberar (Nodo*& lista){	//recibe por referencia pq voy a modificar la lista
 //---------------------------------------------------------------
 //retorna un puntero al nodo que contiene el valor o NULL si no existe
 Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
-	while(lista->info != v && lista != NULL){	//dos condiciones
+
+	cout<<"Antes WHILE "<<"\t\t\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
+
+	while((lista->info != v) && (lista != NULL)){	//dos condiciones
+		cout<<"Dentro WHILE (antes sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
+		
 		lista = lista->sig;
-		cout<<"entré al while: "<<lista->info<<endl;
+		cout<<"Dentro WHILE (dspues sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl<<endl;
+	}
+	cout<<"sali del while"<<endl;
+	return lista;
+}
+//Me tira error cuando asigno lista = lista->sig y esta ultima apunta a NULL
+//------------------------------------------------------------------
+Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
+
+	while((lista->info != v) && (lista != NULL)){	//dos condiciones
+		lista = lista->sig;
 	}
 	return lista;
 }
+
+
 //---------------------------------------------------------------
 void eliminar(Nodo*& lista, int x){	//
 	Nodo* aux = lista;	//voy a recorrer y no quiero perderlo, guardo el primero. Si uso lista directamente, pierdo la referencia

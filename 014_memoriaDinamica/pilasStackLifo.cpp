@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 
-
 struct Nodo {
 	int dato;
 	Nodo* sig;
@@ -28,15 +27,12 @@ int main(int argc, char const *argv[])
 		mostrar(pila);
 		cout<<endl;
 	}
-
 	cout<<"Ahora voy liberado (popeando): "<<endl;
 	while(pila->sig != NULL){
 		pop(pila);
 		mostrar(pila);
 		cout<<endl;
 	}
-
-
 	return 0;
 }
 //---------------------------------------
@@ -57,10 +53,8 @@ int pop (Nodo* &pila){
 	delete aux;
 	return v;
 }
-
 //---------------------------------------
 void mostrar (Nodo* lista){ //puedo pasar por valor, pq no estoy modificando la lista.
-
 //mientras el puntero lista no apunte a NULL
 	while(lista != NULL){
 		cout<<lista->dato<<" -> ";
