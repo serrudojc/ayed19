@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]){
 		cout<<"\t4-Ejercicio 4."<<endl;
 		cout<<"\t5-Ejercicio 5."<<endl;
 		cout<<"\t6-Ejercicio 6."<<endl;
-		cout<<"\t7-Ejercicio 7."<<endl;
+		cout<<"\t7-."<<endl;
 		cout<<"\t--------------"<<endl;
 		cout<<"\t8-Push."<<endl;
 		cout<<"\t9-Pop."<<endl;
@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]){
 				cin>>valor;
 				cout<<"Fue exitoso?: "<<insertarValorEnPila(pila, valor)<<endl;
 				break;
-				
+
 			 case 3:
 			 	cout<<"Ingresar valor X y posicion Y: ";
 			 	cin>>valorX>>posicionY;
@@ -113,6 +113,19 @@ void mostrar (Nodo* lista){
 		lista = lista->sig;		
 	}
 }	
+//---------------------------------------
+//ejericio 1
+void eliminar2primeros(Nodo*& pila, int x){
+	for(int i=0; i>2; i++)
+		pop(pila);
+	Nodo* pilaAux = NULL; //creo una pila auxiliar
+	while (pila!=NULL){
+		push(pilaAux,pop(pila));
+	}
+	push(pila,x);
+	while(pilaAux != NULL)
+		push(pila,pop(pilaAux));
+}
 //---------------------------------------------
 //ejercicio 2
 char insertarValorEnPila (Nodo* &pila, int x){
@@ -176,3 +189,91 @@ void insertarEnPosicion (Nodo* &pila, int valX, int posY){
 		}
 	}	
 }
+//------------------------------------------------
+//Ejercicio 4
+void reemplazarXporY (nodo* &pila, int x, int y){
+	Nodo* pilaAux = NULL;
+	int valor;
+
+	//recorrer para popear
+	while (pila != NULL){
+		//pop devuelve la parte info del nodo
+		valor = pop(pila);
+		if (valo == x){
+			push(pilaAux,Y);
+		}else{
+			push(pilaAux,valor);
+		}
+	}
+	while (pilaAux != NULL){
+		push (pila, pop(pilaAux));
+	}
+}
+//---------------------------------------
+//Ejercicio 5
+bool inversa(char letras[], int len){
+	Nodo* pila = NULL;
+	bool esInversa = true;
+	//pasamos todo lo del vector de char a nuestra pila
+	for (int i =0; i<len; i++){
+		push(pila, letras[i]);
+	}
+
+	//necesitamos otra pila. Ver prueba de escritorio en carpeta.
+	Nodo* pilaB = NULL;
+	//sacamos hasta el puntito
+	char c = '/0'; 
+	while(c != '.' && pila != NULL){
+		//sacamos del a pila y guardamos
+		c = pop(pila);
+		//cheqeuaos que sea distinto de punto
+		if(c != '.'){
+			push(pilaB, c);
+		}
+	}
+
+	//aho8pila ra comparo, esto funciona si tienen las misma cantidad
+	while(pila != NULL && pilaB != NULL && esInversa !=false){
+		if(pop(pila) != pop(pilaB)){
+			esInversa = false
+		}
+	}
+	//pregunto si no eran iguales.
+	if (pilaB != NULL){
+		esInversa = false;
+	}
+
+	if (pila != NULL){
+		esInversa = false;
+	}
+	return esInversa;
+}
+//------------------------------------------
+//Ejercicio 6
+struct Nodo
+{	string apellido;
+	Nodo* sgte;
+	
+};
+
+void ordenInverso (){
+	Nodo* pila = NULL;
+
+	string apellido;
+	cout<<"Ingrese un apellido"<<endl;
+	cin>>apellido;
+	while (apellido != 'x'){
+		//guardo los apellidos, uso push
+		push(pila, apellido);
+		cout<<"Ingrese ....."<<endl;
+		cin>>apellido;
+	}
+	//imprimo
+
+	while(pila != NULL){
+		cout<<pop(pila)<<endl;
+	}
+}
+//-----------------------------------------
+//Ejercicio 7
+//Aparte

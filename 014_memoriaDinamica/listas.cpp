@@ -153,22 +153,27 @@ void liberar (Nodo*& lista){	//recibe por referencia pq voy a modificar la lista
 	}
 }
 //---------------------------------------------------------------
+
 //retorna un puntero al nodo que contiene el valor o NULL si no existe
 Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
+	Nodo* aux;
+	aux=lista;	//uso auxiliar, si uso directamente la lista, se rompe todo, como en la funcion de abajo
 
 	cout<<"Antes WHILE "<<"\t\t\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
 
-	while((lista->info != v) && (lista != NULL)){	//dos condiciones
-		cout<<"Dentro WHILE (antes sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
+	while((aux != NULL)&&(aux->info != v) ){	//dos condiciones
 		
-		lista = lista->sig;
+		cout<<"Dentro WHILE (antes sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
+		aux = aux->sig;
 		cout<<"Dentro WHILE (dspues sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl<<endl;
+	
 	}
 	cout<<"sali del while"<<endl;
-	return lista;
+	return aux;
 }
-//Me tira error cuando asigno lista = lista->sig y esta ultima apunta a NULL
 //------------------------------------------------------------------
+/*
+//Aca, Me tira error cuando asigno lista = lista->sig y esta ultima apunta a NULL. Se arregla usando un auxiliar
 Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
 
 	while((lista->info != v) && (lista != NULL)){	//dos condiciones
@@ -176,8 +181,7 @@ Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
 	}
 	return lista;
 }
-
-
+*/
 //---------------------------------------------------------------
 void eliminar(Nodo*& lista, int x){	//
 	Nodo* aux = lista;	//voy a recorrer y no quiero perderlo, guardo el primero. Si uso lista directamente, pierdo la referencia

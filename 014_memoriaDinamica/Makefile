@@ -1,10 +1,10 @@
 CC=g++				    # compilador c
 CFLAGS=-c -Wall	-g		# flags pasados al complilador
 LDFLAGS=			    # flags pasados al linker
-OBJS=pilasEjercicios.o		# lista de todos los archivos objeto
+OBJS=listas.o		# lista de todos los archivos objeto
 SOURCES=$(OBJS:.o=.c)	# lista de todos los archivos fuente
 HEADERS=*.hpp			    # lista de todos los archivos header
-EXE=pilasEjercicios		    # nombre del ejecutable
+EXE=listas		    # nombre del ejecutable
 MAKEFILE=Makefile
 
 # regla para generar el ejecutable
