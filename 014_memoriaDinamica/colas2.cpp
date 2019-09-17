@@ -1,55 +1,60 @@
+/*
+Ejercicio Nro. 2:
+Dada una cola, desarrollar una función que devuelva la cantidad de nodos que tiene.
+*/
+
 #include <iostream>
 #include <string.h>
 using namespace std;
-
-struct Nodo {
-	Alu info;
-	Nodo* sig;
-};
 
 struct Alu {
 	int legajo;
 	int curso;
 	char apellido[50];
-}
+};
+struct Nodo {
+	Alu info;
+	Nodo* sig;
+};
 
-int devolverCantidadNodos(Nodo* colaFte, Nodo* colaFin);
-void encolar (Nodo* &colaFte, Nodo* &colaFin, int leg, char ape[], char cur[]);
-int desencolar (Nodo* &colaFte, Nodo* &colaFin);
+int devolverCantidadNodos(Nodo* &colaFte, Nodo* &colaFin);
+void encolar (Nodo* &colaFte, Nodo* &colaFin, Alu aluAux);
+Alu desencolar (Nodo* &colaFte, Nodo* &colaFin);
 void mostrar (Nodo* lista);
 
 int main (){
 	Nodo* colaFte = NULL;	
 	Nodo* colaFin = NULL;
-	int leg;
-	char ape[30], cur[10];
+	Alu aluAux;
+
+	int c;
 	
 	cout<<" Voy a formar la cola, voy a encolar: "<<endl;
 	while(1){
-		cout<<"Ingrese legajo (salgo con cero): "; cin>>leg; 
-		cout<<"Ingrese apellido: "; cin>>ape;
-		cout<<"Ingrese curso: "; cin>>cur;
-		if (leg == 0)
+		cout<<"Ingrese legajo (salgo con cero): "; cin>>aluAux.legajo; 
+		cout<<"Ingrese apellido: ";	 cin>>aluAux.apellido;
+		cout<<"Ingrese curso: "; cin>>aluAux.curso;
+		if (aluAux.legajo == 0)
 			break;
-		encolar(colaFte, colaFin, leg, ape, cur);
+		encolar(colaFte, colaFin, aluAux);
 		mostrar(colaFte);
 		cout<<endl;
 	}
 
-	mostrar(colaFte);
-
-	cout<<"Cantidad de nodos: "<<devolverCantidadNodos(colaFte,colaFin)<<endl;
+	mostrar(colaFte); cout<<endl;
+	c = devolverCantidadNodos(colaFte,colaFin);
+	cout<<"Cantidad de nodos: "<<c<<endl;
 	mostrar(colaFte);
 
 	return 0;
 }
 //-------------------------------------------------------
-int cantidadDeNodos(Nodo* &colaFte, Nodo* &colaFin){
+int devolverCantidadNodos(Nodo* &colaFte, Nodo* &colaFin){
 	int cant=0;
 
 	//si quiero dejar la cola como estaba:
-	Nodo* &auxFte = NULL;
-	Nodo* &auxFin = NULL;
+	Nodo* auxFte = NULL;
+	Nodo* auxFin = NULL;
 
 	while(colaFte != NULL){
 		encolar(auxFte, auxFin, desencolar(colaFte,colaFin));
@@ -61,25 +66,21 @@ int cantidadDeNodos(Nodo* &colaFte, Nodo* &colaFin){
 	return cant;
 }
 //-------------------------------------------------------
-void encolar (Nodo* &colaFte, Nodo* &colaFin, int leg, char ape[], char cur[]){
-	//aca creamos un nodo, que está contento por ahi, flotanto solo(nadie apunta a él y el apunta a NULL)
+void encolar (Nodo* &colaFte, Nodo* &colaFin, Alu aluAux){
 	Nodo* nuevo = new Nodo();
-	nuevo->legajo = leg;
-	strcpy(nuevo->apellido, ape);
-	strcpy(nuevo->curso, cur);
+	nuevo->info = aluAux;
 	nuevo->sig = NULL;
 
-	//si el valor es nulo, entonces está vacio
 	if(colaFte == NULL){
-		colaFte = nuevo; //colaFte y ColaFin va apuntar al mismo elemento, caso de vacio
+		colaFte = nuevo; 
 	}else{
-		colaFin->sig = nuevo; //
+		colaFin->sig = nuevo; 
 	}
 	colaFin = nuevo;
 }
 //-----------------------------------------------
-int desencolar (Nodo* &colaFte, Nodo* &colaFin){
-	int l = colaFte->legajo;	//sacamos el primero
+Alu desencolar (Nodo* &colaFte, Nodo* &colaFin){
+	Alu l = colaFte->info;	
 	Nodo* aux = colaFte;
 	colaFte = colaFte->sig;
 	if(colaFte==NULL)
@@ -88,10 +89,9 @@ int desencolar (Nodo* &colaFte, Nodo* &colaFin){
 	return l;
 }
 //---------------------------------------
-void mostrar (Nodo* lista){ //puedo pasar por valor, pq no estoy modificando la lista.
-//mientras el puntero lista no apunte a NULL
+void mostrar (Nodo* lista){ 
 	while(lista != NULL){
-		cout<<lista->legajo<<" "<<lista->apellido<<" "<<lista->curso<<" -> ";
-		lista = lista->sig;		//hay que avanzar
+		cout<<lista->info.legajo<<" "<<lista->info.apellido<<" "<<lista->info.curso<<" -> ";
+		lista = lista->sig;	
 	}
 }	

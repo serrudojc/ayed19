@@ -1,10 +1,10 @@
 CC=g++				    # compilador c
 CFLAGS=-c -Wall	-g		# flags pasados al complilador
 LDFLAGS=			    # flags pasados al linker
-OBJS=listas.o		# lista de todos los archivos objeto
+OBJS=colas2.o		# lista de todos los archivos objeto
 SOURCES=$(OBJS:.o=.c)	# lista de todos los archivos fuente
 HEADERS=*.hpp			    # lista de todos los archivos header
-EXE=listas		    # nombre del ejecutable
+EXE=colas2		    # nombre del ejecutable
 MAKEFILE=Makefile
 
 # regla para generar el ejecutable
