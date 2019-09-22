@@ -1,3 +1,10 @@
+/*
+Ejercicio Nro. 5:
+Dadas dos colas COLA y COLB, desarrollar un procedimiento que genere otra cola COLC
+por apareo del campo LEGAJO del registro (define orden creciente en ambas).
+Nota: COLA y COLB dejan de ser útiles después del apareo.
+*/
+
 struct Nodo{
 	Alu info;
 	Nodo* sig;
@@ -8,9 +15,12 @@ struct Alu{
 	char apellido[50];
 }
 
-//apareo, asi que asumo que las colas estan ordenadas
+//apareo= asi que asumo que las colas estan ordenadas
 
-void apareo(Nodo* &colaAFte, Nodo* &colaAFin, Nodo* &colaBFte, Nodo* &colaBFin, Nodo* &colaCFte, Nodo* &colaCFin){
+void apareo(Nodo* &colaAFte, Nodo* &colaAFin, 
+			Nodo* &colaBFte, Nodo* &colaBFin, 
+			Nodo* &colaCFte, Nodo* &colaCFin){
+
 	//while grande, dos condiciones. 
 	while(colaAFte != NULL && colaBFte != NULL){
 		if(colaAFte->info.legajo < colaBFte->info.legajo){
@@ -19,7 +29,7 @@ void apareo(Nodo* &colaAFte, Nodo* &colaAFin, Nodo* &colaBFte, Nodo* &colaBFin, 
 			encolar(colaCFte, colaCFin, desencolar(colaBFte, colaBFin));
 		}
 	}
-	//ahora, necesito dos whiles, por si salí antes de alguno.
+	//ahora, necesito dos while, por si salí antes del anterior.
 	while(colaAFte != NULL){
 		encolar(colaCFte, colaCFin, desencolar(colaAFte, colaAFin));
 	}

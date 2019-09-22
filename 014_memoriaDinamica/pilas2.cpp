@@ -1,9 +1,11 @@
-//Ejercicio 2: Dada una pila y un valor X, hacer un procedimiento que elimine los 
-//2 primeros nodos de la pila y deje el valor X como primero
-
+/*
+Ejercicio Nro. 2:
+Dada una pila y un valor X, desarrollar un procedimiento que inserte X como tercer
+valor de la pila. Retornar un parámetro con valor 'S' o 'N' según haya sido exitoso o no
+el requerimiento.
+*/
 #include <iostream>
 using namespace std;
-
 
 struct Nodo {
 	int dato;

@@ -1,3 +1,8 @@
+/*
+Ejercicio Nro. 3:
+Dada una LISTA, imprimirla en orden natural si tiene más de 100 nodos, caso
+contrario imprimirla en orden inverso.
+*/
 struct Nodo{
 	Alu info;
 	Nodo* sig;

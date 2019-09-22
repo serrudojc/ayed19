@@ -1,3 +1,9 @@
+/*
+Ejercicio Nro. 4:
+Dada una cola, imprimirla en orden natural si tiene más de 100 nodos, caso contrario
+imprimirla en orden inverso.
+*/
+
 struct Nodo{
 	Alu info;
 	Nodo* sig;
@@ -13,7 +19,6 @@ void imprimirNodos(Nodo* &colaFte, Nodo* & colaFin){
 	Alu valor;
 
 	Nodo* pila = NULL;
-
 
 	if(cantNodos>100){
 		//natural, uso desencolar

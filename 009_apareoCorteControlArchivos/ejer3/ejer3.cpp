@@ -63,7 +63,7 @@ fclose(doc);
 FILE *consolidado = fopen("consolidado.dat","wb+");
 
 for(int i=0; i<lenCons; i++){
-	write(&cons[i], sizeof(personaConsolidada),1, consolidado);
+	fwrite(&cons[i], sizeof(personaConsolidada),1, consolidado);
 }
 rewind(consolidado);	//vuevo al principio
 fread(&aux, sizeof(personaConsolidada), 1, consolidado); //muestro el archivo

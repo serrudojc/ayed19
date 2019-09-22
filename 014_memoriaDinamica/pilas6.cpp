@@ -1,3 +1,8 @@
+/*
+Ejercicio Nro. 6:
+Desarrollar un procedimiento que ingrese por teclado un conjunto de Apellidos de
+estudiantes y los imprima en orden inverso al de ingreso.
+*/
 struct Nodo
 {	string apellido;
 	Nodo* sgte;

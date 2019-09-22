@@ -1,3 +1,9 @@
+/*
+Ejercicio Nro. 5:
+Definir una función INVERSA que evalúe dos conjuntos de caracteres separados por un
+punto y retorne True si los conjuntos son inversos (ej: ABcDe.eDcBA) o False si no lo
+son. Los conjuntos deben ingresarse letra por letra por teclado.
+*/
 bool inversa(char letras[], int len){
 	Nodo* pila = NULL;
 	bool esInversa = true;

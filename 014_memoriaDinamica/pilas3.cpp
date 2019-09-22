@@ -1,3 +1,8 @@
+/*
+Ejercicio Nro. 3:
+Dada una pila y dos valores X e Y, desarrollar un procedimiento que inserte el valor X
+en la posición Y de la pila si es posible.
+*/
 void insertarEnPosicion (Nodo* &pila, int valX, int posY){
 	Nodo* pilaAux = NULL;
 	int contador = 0;

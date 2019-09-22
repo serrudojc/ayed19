@@ -173,7 +173,7 @@ Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
 }
 //------------------------------------------------------------------
 /*
-//Aca, Me tira error cuando asigno lista = lista->sig y esta ultima apunta a NULL. Se arregla usando un auxiliar
+//En Buscar, me tira error cuando asigno lista = lista->sig y esta ultima apunta a NULL. Se arregla usando un auxiliar
 Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
 
 	while((lista->info != v) && (lista != NULL)){	//dos condiciones

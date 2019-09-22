@@ -2,7 +2,11 @@
 UNA PILA NO SE PUEDE ORDENAR, voy a necesitar una estructura auxiliar.
 Uso una LISTA (no un vector, pq no se cuantos elementos tengo)
 */
-
+/*
+Ejercicio Nro. 7:
+Dada una pila desarrollar un procedimiento que ordene la misma de acuerdo al valor
+de sus nodos y la retorne
+*/
 struct Nodo{
 	Alu info;
 	Nodo* sgte;
