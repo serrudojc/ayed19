@@ -1,4 +1,4 @@
-//Implementacion de una LIFO, STACK o PILA
+ //Implementacion de una LIFO, STACK o PILA
 
 #include <iostream>
 using namespace std;
@@ -37,19 +37,29 @@ int main(int argc, char const *argv[])
 }
 //---------------------------------------
 //apilo
+//pila es puntero a nodo, como c/vez q inserto un nodo, voy a modificarlo, el pointer se pasa por referencia
 void push (Nodo* &pila, int valor){
+	/*creo un puntero llamado nuevo, al cual asigno un nuevo espacio en memoria, creo
+	un registro en tiempo de ejecucion. La dir de memoria de ese registro se la asigno a nuevo */
 	Nodo* nuevo = new Nodo();
+	/*Al campo de dato le asigno el valor. el operador de acceso a un miembro de un registro usamos 
+	el operador . (punto), pero el operador de acceso a un miembro de un registro apuntado por un 
+	puntero es -> */
 	nuevo->dato = valor;
 	nuevo->sig = pila;	
 
 	pila = nuevo; 
 }
 //---------------------------------------
-//desapilo
+//desapilo 
+//paso como parametro, el comienzo de la pila
 int pop (Nodo* &pila){
-	int v = pila->dato;
+	//creamos nodo auxiliar que le asignamos la dir de comienz de la pila
 	Nodo* aux = pila;
-	pila = pila->sig;
+	//asginamos el campo info del registro apuntado por el puntero aux
+	int v = aux->dato;
+	//la pila en lugar de apuntar donde apuntaba, ahora apunta al sguiente, pq vamos a borrar el primer nodo
+	pila = aux->sig;
 	delete aux;
 	return v;
 }

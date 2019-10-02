@@ -1,10 +1,26 @@
 #include<stdlib.h> //para el modulo absoluto
+
+//1-Como hicimos en el otro final + mas unas cosas que veremos mas adelante
+
+struct infoPiso{
+	int piso;
+	int suben; //personas que suben (deberia ser positivo siempre?)
+	int bajan; //personas que bajan
+}
+
+//declaramos el nodo
+struct Nodo{
+	infoPiso info;
+	Nodo* arriba;
+	Nodo* abajo;
+}
+
 //struct para pisos eliminados
 struct eliminados{
 	int piso;
 	int dif;
 }
-//1-Como hicimos en el otro final + mas unas cosas que veremos mas adelante
+
 //-----------------------------------------------------------------------------------
 // Punto 2
 int eliminarLosPisosPrimosArribaDe(Nodo* unPisoActual, FILE* unFlujoDeEscritura);
@@ -39,7 +55,7 @@ void eliminarPiso(Nodo* &unPiso){
 	else if(unPiso->arriba != NULL)
 		unPiso->arriba->abajo = NULL;
 	//ahora elimino el piso
-	delete(piso);
+	delete(unPiso);
 }
 //------------------------------------------------------------------------------------
 //Punto 5

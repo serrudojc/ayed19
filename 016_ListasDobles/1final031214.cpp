@@ -4,8 +4,8 @@
 
 struct infoPiso{
 	int piso;
-	int suben;
-	int bajan;
+	int suben; //personas que suben (deberia ser positivo siempre?)
+	int bajan; //personas que bajan
 }
 
 //declaramos el nodo
