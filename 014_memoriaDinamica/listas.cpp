@@ -16,15 +16,15 @@ Nodo *lista = NULL;
 
 Nodo *temporario = NULL;
 
-void agregarNodo(Nodo*& lista, int num);
-void mostrar (Nodo* lista);
-void liberar (Nodo*& lista);
-Nodo* buscar(Nodo* lista, int v);
-void eliminar(Nodo*& lista, int x);
-int eliminarPrimerNodo (Nodo*& lista);
-Nodo* insertarOrdenado(Nodo*& lista, int x);
-void ordenar(Nodo*& lista);
-Nodo* buscaEInsertaOrdenado(Nodo*& p, int v, bool& enc);
+void agregarNodo(Nodo *&lista, int num);
+void mostrar (Nodo *lista);
+void liberar (Nodo *&lista);
+Nodo* buscar(Nodo *lista, int v);
+void eliminar(Nodo *&lista, int x);
+int eliminarPrimerNodo (Nodo *&lista);
+Nodo* insertarOrdenado(Nodo *&lista, int x);
+void ordenar(Nodo *&lista);
+Nodo* buscaEInsertaOrdenado(Nodo *&p, int v, bool& enc);
 
 int main (){
 	int opcion, valor;
@@ -95,7 +95,7 @@ int main (){
 				break;				
 			default:
 				cout<<"opcion incorrecta."<<endl<<endl;	
-		}
+		}ma
 	}
 	while(opcion);
 
@@ -103,10 +103,10 @@ int main (){
 }
 //--------------------------------------------------------------
 //Agrego nuevo nodo con valor "num" al final de la lista referenciada por "lista"
-void agregarNodo(Nodo*& lista, int num){ // paso lista por referencia
+void agregarNodo(Nodo *&lista, int num){ // paso lista por referencia
 	
 	//asigno memoria
-	Nodo* p = new Nodo(); 
+	Nodo *p = new Nodo(); 
 	p->info = num;
 	p->sig = NULL;
 
@@ -127,12 +127,13 @@ void agregarNodo(Nodo*& lista, int num){ // paso lista por referencia
 }
 //----------------------------------------------------------
 //recorro la lista "lista" y muestro por pantalla el valor de cada nodo
-void mostrar (Nodo* lista){ //puedo pasar por valor, pq no estoy modificando la lista.
+void mostrar (Nodo *lista){ //puedo pasar por valor, pq no estoy modificando la lista.
 
+	Nodo *aux = lista;
 //mientras el puntero lista no apunte a NULL
-	while(lista != NULL){
-		cout<<lista->info<<" -> ";
-		lista = lista->sig;		//hay que avanzar
+	while(aux != NULL){
+		cout<<aux->info<<endl;
+		aux = aux->sig;		//hay que avanzar
 	}
 }	
 /*
@@ -144,8 +145,8 @@ void mostrar (Nodo* lista){ //puedo pasar por valor, pq no estoy modificando la 
 }*/
 //------------------------------------------------------------
 //recorro la lista "lista" liberando la memoria que ocupan c/u de sus nodos
-void liberar (Nodo*& lista){	//recibe por referencia pq voy a modificar la lista
-	Nodo* aux;
+void liberar (Nodo *&lista){	//recibe por referencia pq voy a modificar la lista
+	Nodo *aux;
 	while(lista!=NULL){
 		aux = lista;	//asignamos la lista, para eliminar el primer nodo
 		lista = lista->sig;	//antes de borrar, guardo para no perder la referencia, MUY IMPORTANTE!!!
@@ -153,25 +154,16 @@ void liberar (Nodo*& lista){	//recibe por referencia pq voy a modificar la lista
 	}
 }
 //---------------------------------------------------------------
-
 //retorna un puntero al nodo que contiene el valor o NULL si no existe
-Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
-	Nodo* aux;
-	aux=lista;	//uso auxiliar, si uso directamente la lista, se rompe todo, como en la funcion de abajo
-
-	cout<<"Antes WHILE "<<"\t\t\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
+Nodo *buscar(Nodo *lista, int v){	//retorno un puntero del tipo Nodo
+	Nodo *aux;
+	aux = lista;	//uso auxiliar, si uso directamente la lista, se rompe todo, como en la funcion de abajo
 
 	while((aux != NULL)&&(aux->info != v) ){	//dos condiciones
-		
-		cout<<"Dentro WHILE (antes sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl;
 		aux = aux->sig;
-		cout<<"Dentro WHILE (dspues sig)"<<"\tlista= "<<lista<<"\tlista->info= "<<lista->info<<"\tlista->sig= "<<lista->sig<<endl<<endl;
-	
 	}
-	cout<<"sali del while"<<endl;
 	return aux;
 }
-//------------------------------------------------------------------
 /*
 //En Buscar, me tira error cuando asigno lista = lista->sig y esta ultima apunta a NULL. Se arregla usando un auxiliar
 Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
@@ -183,11 +175,11 @@ Nodo* buscar(Nodo* lista, int v){	//retorno un puntero del tipo Nodo
 }
 */
 //---------------------------------------------------------------
-void eliminar(Nodo*& lista, int x){	//
-	Nodo* aux = lista;	//voy a recorrer y no quiero perderlo, guardo el primero. Si uso lista directamente, pierdo la referencia
-	Nodo* ant = NULL;	//no hay nada
+void eliminar(Nodo *&lista, int x){	//
+	Nodo *aux = lista;	//voy a recorrer y no quiero perderlo, guardo el primero. Si uso lista directamente, pierdo la referencia
+	Nodo *ant = NULL;	//no hay nada
 
-	while(aux->info != x && aux!=NULL){
+	while(aux->info != x && aux != NULL){
 		ant = aux;
 		aux = aux->sig;	// si salgo del while significa que lo encontré
 	}	//tengo que preveer 3 condiciones border; elimino el primero, el ultimo ò alguno del medio
@@ -200,10 +192,10 @@ void eliminar(Nodo*& lista, int x){	//
 }
 
 //---------------------------------------------------------------
-int eliminarPrimerNodo (Nodo*& lista){
-	Nodo* aux = lista; 	//como es por referencia
+int eliminarPrimerNodo (Nodo *&lista){
+	Nodo *aux = lista; 	//como es por referencia
 	int valor=-1;
-	if(aux!=NULL){	//chequeo que no sea una lista vacia
+	if(aux != NULL){	//chequeo que no sea una lista vacia
 		valor = lista->info;
 		lista = lista->sig;
 		delete aux;
@@ -214,17 +206,17 @@ int eliminarPrimerNodo (Nodo*& lista){
 //se presume que la lista está ordenada o vacia
 //Retorna la direccion de mem del nodo insertado
 
-Nodo* insertarOrdenado(Nodo*& lista, int x){	//recibe la lista y el valor
+Nodo* insertarOrdenado(Nodo *&lista, int x){	//recibe la lista y el valor
 	//1- tengo que crear el nuevo nodo y asignar memoria
-	Nodo* p = new Nodo();
+	Nodo *p = new Nodo();
 	//2- asignamos el dato al campo dato del nuevo nodo.
 	p->info = x;
 	p->sig = NULL;
 	//terminé de preparar mi nodo aislado
 	//Ahora puede pasar que esté al ppio, en el medio ó al final
 	//3-creamos nodos auxiliares
-	Nodo* aux = lista;
-	Nodo* ant = NULL;
+	Nodo *aux = lista;
+	Nodo *ant = NULL;
 	//4- empezamos a iterar, una condicion es que nose termine, la otra, mientras que "sea menor al valor"
 	while(aux!=NULL && aux->info <x){ //si tengo q insertar en medio o al final
 		ant = aux;

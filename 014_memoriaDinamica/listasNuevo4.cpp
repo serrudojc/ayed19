@@ -1,8 +1,8 @@
 //vamos a sacar, no recorrer, pq el ejercicio lo dice. 
 /*
 Ejercicio Nro. 4:
-Dadas dos listas LISTA y LISTB, desarrollar un procedimiento que genere otralista LISTC por apareo del campo LEGAJO del registro (define orden creciente
-en ambas).
+Dadas dos listas LISTA y LISTB, desarrollar un procedimiento que genere otra lista LISTC 
+por apareo del campo LEGAJO del registro (define orden creciente en ambas).
 Nota: LISTA y LISTB dejan de ser útiles después del apareo.
 */
 

@@ -3,7 +3,7 @@
 //lista de cursos.
 struct Curso{
 	InfoCurso info;
-	Curso* sig;
+	Curso *sig;
 };
 
 struct InfoCurso{
@@ -11,17 +11,17 @@ struct InfoCurso{
 	int promocionados;
 	int regularizados;
 	int recursantes;
-	Estudiante* estudiantes;
+	Estudiante *estudiantes;
 }
 
 struct Estudiante{
 	InfoEst info;
-	Estudiante* sig;
+	Estudiante *sig;
 };
 
 struct InfoEst{
 	int id;
-	Evaluacion* evaluaciones[4]; //ver dibujo en carpeta
+	Evaluacion *evaluaciones[4]; //ver dibujo en carpeta
 }
 /*Los registros están parcialmente ordenados, para un estudiante y para una evaluación determinada, la
 primera nota es la de la instancia original, la segunda es la del recuperatorio, y la tercera la del segundo
@@ -31,7 +31,7 @@ ESTO ES ASI, ASI A MEDIDA QUE INSERTO LA QUE ME VA QUEDANDO ES LA ULTIMA
 
 struct Evaluacion{
 	int nota;
-	Evaluacion* sig;
+	Evaluacion *sig;
 }
 
 //2. Supongo que paro el archivo abierto
