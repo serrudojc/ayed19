@@ -1,6 +1,14 @@
 /*
 Final 14/12/16
 */
+#include <iostream>
+#include <string.h>
+#include <conio.h>
+#include<iostream>
+#include<cstdlib>
+#include <stdio.h>
+
+using namespace std;
 
 // estructuras
 
@@ -8,7 +16,7 @@ Final 14/12/16
 
 struct conversacion{
 	int idConversacion;
-	string nombre; 	//del grupo o " " si es una persona
+	char nombre[50]; 	//del grupo o " " si es una persona
 	bool notificar;
 	bool vistaPrevia;
 };
@@ -28,6 +36,35 @@ struct Contactos{
 
 contacto vecContactos[200];	//vector de contactos
 Nodo *conversaciones;	//lista de conversaciones
+
+struct mensaje{
+	char texto[100];
+};
+
+int buscarEnLista(Nodo *a, int d){
+	return a;
+	//Caja negra, devuelve la posicion del usuario si existe o sino -1.
+    if(id){
+        return id;
+    }else{
+        return -1;
+    }
+};
+
+string NumeroTelefonicoUsuario(int id){
+    //Caja Negra, devuelve el numero de telefono del usuario.
+    return "telefono en formato string";
+};
+
+string VistaPrevia(mensaje msj){
+    //Caja Negra, devuelve un preview del mensaje entero, lo achica.
+    return "vista previa!";
+};
+
+void emitirNotificacion(string titulo, string desc){
+    //Caja negra, muestra en pantalla la notificacion.
+};
+
 
 //-----------------------------------------------------------------
 
@@ -64,7 +101,7 @@ void NotificarMensajeRecibido(Nodo *conversaciones, Contacto vecContactos[], int
 		string descripcion;
 		//jugamos con el cuadrito
 		if(convBuscada->info.nombre == ""){
-			//directa
+			//conversacion directa
 			//Con vista previa o sin vista previa?
 			titulo = nombreContactoAMostrar;
 			if(convBuscada->info.vistaPrevia){
