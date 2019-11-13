@@ -376,9 +376,9 @@ while(!feof(arch)){
 		buscandoArt->info.cantidad +=reg.cantidad;
 	}
 	//si no existia, buscaEInserta lo agrega automaticamente, ya que antes inicialicé infoArt
-fread(&reg, sizeof(venta), 1, arch);	//vuelvo a leer, para el siguiente registro.
+	fread(&reg, sizeof(venta), 1, arch);	//vuelvo a leer, para el siguiente registro.
 }
-
+fclose(arch);
 
 //Ya terminé de cargar en memoria todo el archivo. Ahora procesamos.
 
