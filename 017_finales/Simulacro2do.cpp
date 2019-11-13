@@ -339,6 +339,7 @@ venta reg;
 bool enc;
 NodoLista *lista = NULL;
 
+//declaro estructuras y punteros de tipo estructuras para guardar los nodos q me devuelva la funcion buscar
 cliente infoLista;
 NodoLista *buscado;
 
@@ -367,13 +368,14 @@ while(!feof(arch)){
 	infoArt.precio = reg.precio;
 
 	//Ahora buscamos si existe el articulo. Si existe, lo sumo. Si no existe, lo inserto. 
-	//buscado es el puntero a cliente que teniamos de antes.s
+	//buscado es el puntero a cliente que teniamos de antes.
+	//buscado->info.articulos, es la sublista de articulos que tiene cada cliente.
 	buscadoArt = buscaEInserta(buscado->info.articulos, infoArt, enc); //busco por articulo	
 	//si lo encontró, sumo la cantidad
 	if(enc){
 		buscandoArt->info.cantidad +=reg.cantidad;
 	}
-	//si no existia, buscaEInserta lo agrega automaticamente.
+	//si no existia, buscaEInserta lo agrega automaticamente, ya que antes inicialicé infoArt
 fread(&reg, sizeof(venta), 1, arch);	//vuelvo a leer, para el siguiente registro.
 }
 
