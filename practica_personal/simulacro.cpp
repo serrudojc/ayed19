@@ -239,7 +239,7 @@ Nodo *lista = NULL;
 fread(&reg, sizeof(turnos),1,fp);
 
 while(!feof(fp)){
-	insertarOrdenado(lista, reg.info);	//ordeno por hora
+	insertarOrdenado(lista, reg.info);	//ordeno por hora //es reg o reg.info???
 	fread(&reg, sizeof(turnos),1,fp);	
 }
 

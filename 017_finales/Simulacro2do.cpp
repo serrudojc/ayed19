@@ -264,7 +264,7 @@ Nodo* lista = NULL;
 fread(&reg, sizeof(turno), 1, arch);
 while(!feof(arch)){
 	//tengo que ponerlo en la lista ordenado.
-	insertarOrdenado(lista, reg.info);	//ORDENADO POR HORA
+	insertarOrdenado(lista, reg.info);	//ORDENADO POR HORA, es reg o reg.info????????????
 	fread(&reg, sizeof(turno), 1, arch);
 }
 
